@@ -4,9 +4,16 @@ import TodoItem from '../components/TodoItem'
 import Item from '../components/Item'
 import SearchBar from '../components/SearchBar'
 
+import type {Todo} from '../interface/Todo'
+// @flow
 const fetch = require('node-fetch');
 
-export default class Todos extends Component {
+type State = {
+    isLoading: boolean,
+    fillText: string,
+    todoList: Array<Todo>
+}
+export default class Todos extends Component<{},State> {
     static navigationOptions = {
         title: 'Todos',
     };
@@ -21,7 +28,7 @@ export default class Todos extends Component {
         // this.handleNavigate = this.handleNavigate.bind(this)
         // this.handleDeleteItem = this.handleDeleteItem.bind(this)
     }
-    async componentDidMount() {
+    async componentDidMount():void {
         try {
             let response = await fetch(
                 'https://jsonplaceholder.typicode.com/todos/',
@@ -49,7 +56,7 @@ export default class Todos extends Component {
     //         })
     //     }
     // }
-    hanldeSubmitEditing(e) {
+    hanldeSubmitEditing(e: SyntheticEvent<T>): void {
         const todoList = this.state.todoList;
         const inputText = e.nativeEvent.text.trim();
         if(!inputText){
@@ -63,12 +70,12 @@ export default class Todos extends Component {
             ],
         })
     }
-    handleNavigate(item, navigation) {
-        return () => navigation.navigate('Todo', {
+    handleNavigate(item: Todo, navigation):void {
+        navigation.navigate('Todo', {
             name: item
         })
     }
-    handleDeleteItem(item) {
+    handleDeleteItem(item: Todo): void {
         const todoList = this.state.todoList;
         const index = todoList.indexOf(item);
         todoList.splice(index, 1);
@@ -98,7 +105,7 @@ export default class Todos extends Component {
                     renderItem={({ item }) =>
                         <Item
                             item={item}
-                            handleNavigate={this.handleNavigate(item, navigation)}
+                            handleNavigate={()=>this.handleNavigate(item, navigation)}
                             handleDeleteItem={()=>this.handleDeleteItem(item)}
                         />
                     }

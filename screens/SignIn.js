@@ -6,12 +6,17 @@ import {
     View,
     TextInput
 } from 'react-native';
+// @flow
+type State={
+    username:string,
+    password: string
+}
 import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
 const userInfo = {
     username: 'admin',
     password: '123'
 }
-export default class SignInScreen extends React.Component {
+export default class SignInScreen extends React.Component<{},State> {
     static navigationOptions = {
         title: 'Please sign in',
     };
@@ -41,13 +46,13 @@ export default class SignInScreen extends React.Component {
                         color = '#FFC300'
                         title="Sign in!"
                         onPress={this._signInAsync}
-                        style={styles.btn} />
+                        />
                 </View>
             </View>
         );
     }
 
-    _signInAsync = async () => {
+    _signInAsync = async ():void => {
         if(this.state.username === userInfo.username && this.state.password === userInfo.password){
             await AsyncStorage.setItem('userToken', 'abc');
             this.props.navigation.navigate('App');
@@ -72,9 +77,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         padding: 10,
         backgroundColor: '#fff'
-    },
-    btn: {
-        
     }
 
 });

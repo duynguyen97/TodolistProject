@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 });
+
 const drawerNavigation = createDrawerNavigator(
     {
         HomeDrawer: TabNavigation,

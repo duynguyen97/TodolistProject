@@ -2,6 +2,11 @@ import React from 'react'
 import { View, CheckBox, StyleSheet, TouchableOpacity } from 'react-native'
 import TodoItem from './TodoItem'
 import DeleteItem from './DeleteItem'
+// @flow
+type State ={
+    isChecked: boolean
+}
+
 export default class Item extends React.Component {
     constructor(props) {
         super(props);

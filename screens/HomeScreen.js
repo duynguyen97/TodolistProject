@@ -9,6 +9,7 @@ import {
   TouchableHighlight,
   Image
 } from 'react-native';
+// @flow
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { DrawerActions } from 'react-navigation';
@@ -39,11 +40,11 @@ export default class HomeScreen extends React.Component {
     );
   }
 
-  _showMoreApp = () => {
+  _showMoreApp = ():void => {
     this.props.navigation.navigate('Todos');
   };
 
-  _signOutAsync = async () => {
+  _signOutAsync = async ():void => {
     await AsyncStorage.clear();
     this.props.navigation.navigate('Auth');
   };

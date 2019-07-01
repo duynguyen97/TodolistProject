@@ -1,6 +1,10 @@
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-export default function (props) {
+// @flow
+type Props={
+    onPress: function,
+}
+export default function (props:Props) {
     return (
         <TouchableOpacity onPress={props.onPress}>
             <View>

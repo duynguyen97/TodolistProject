@@ -6,13 +6,13 @@ import OtherScreen from '../screens/OtherScreen'
 import SettingScreen from '../screens/Setting'
 import Todos from '../screens/Todos'
 import Todo from '../screens/Todo.js'
-import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
-
+import { createBottomTabNavigator, createAppContainer, createStackNavigator,NavigationScreenProps } from 'react-navigation';
+// @flow
 const AppStack = createStackNavigator({ Home: HomeScreen, Todos, Todo });
 
 const getTabBarIcon = (navigation, focused, tintColor) => {
     const { routeName } = navigation.state;
-    let iconName;
+    let iconName:string;
     let IconComponent = Ionicons;
     if (routeName === "HomeTab") {
         iconName = `ios-information-circle${focused ? '' : '-outline'}`;

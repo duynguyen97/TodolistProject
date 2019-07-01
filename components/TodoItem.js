@@ -6,7 +6,13 @@ import {
     CheckBox,
     TouchableOpacity
 } from 'react-native'
-export default class TodoItem extends React.Component {
+// @flow
+type Props = {
+    title: string,
+    isCompleted: boolean,
+    onPress: function
+}
+export default class TodoItem extends React.Component<Props> {
     constructor(props) {
         super(props)
         // this.state = {
